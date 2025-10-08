@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_arch/features/dashbord/presentation/bloc/post_bloc.dart';
+import 'package:flutter_clean_arch/features/dashbord/presentation/bloc/post_event.dart';
 import 'package:flutter_clean_arch/features/dashbord/presentation/bloc/post_state.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -14,7 +15,9 @@ class DashboardScreen extends StatelessWidget {
           if(state is PostInitialState){
             return Center(
               child: ElevatedButton(
-                onPressed: (){}, 
+                onPressed: (){
+                  context.read<PostBloc>().add(LoadPostEvent());
+                }, 
                 child: Text('Load Posts')
                 ),
             );
@@ -30,7 +33,7 @@ class DashboardScreen extends StatelessWidget {
               itemBuilder: (context,index){
                 final post = state.post[index];
                 return ListTile(
-                  title: Text(post.title),
+                  title: Text("${post.id} ${post.title}"),
                   subtitle: Text(post.body),
                 );
               }

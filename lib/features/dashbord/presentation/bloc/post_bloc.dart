@@ -6,15 +6,15 @@ import 'package:flutter_clean_arch/features/dashbord/presentation/bloc/post_even
 import 'package:flutter_clean_arch/features/dashbord/presentation/bloc/post_state.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
-  final GetPost getPostUsecase;
-  PostBloc(this.getPostUsecase):super(PostInitialState()){
+  final GetPost getPost;
+  PostBloc(this.getPost):super(PostInitialState()){
     on<LoadPostEvent>(_onLoadPost);
   }
 
   FutureOr<void> _onLoadPost(LoadPostEvent event, Emitter<PostState> emit) async{
     emit(PostLoadingState());
     try {
-      final post = await getPostUsecase();
+      final post = await getPost();
       emit(PostSuccessState(post));
     } catch (e) {
       emit(PostErrorState(e.toString()));
