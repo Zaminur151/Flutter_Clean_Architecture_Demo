@@ -1,2 +1,2 @@
 abstract class PostEvent {}
-class LoadPostEvent implements PostEvent{}
+class LoadPostEvent extends PostEvent{}
