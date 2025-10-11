@@ -36,6 +36,7 @@ class DashboardScreen extends StatelessWidget {
                   title: Text("${post.id} ${post.title}"),
                   subtitle: Text(post.body),
                 );
+                
               }
               );
           }
